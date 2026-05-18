@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     title: "D&E Concrete Inc | Bay Area Concrete Contractor",
     description: "20+ Years of Concrete Excellence in the Bay Area. Fully Licensed & Insured. Free Estimates.",
     type: "website",
+    images: [{ url: "/og-image.png", width: 512, height: 512, alt: "D&E Concrete Inc" }],
   },
 };
 
