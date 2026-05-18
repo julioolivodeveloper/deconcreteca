@@ -8,6 +8,7 @@ import WhyUs from "@/components/WhyUs";
 import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ChatBot from "@/components/ChatBot";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <WhyUs />
       <Contact />
       <Footer />
+      <ChatBot />
     </main>
   );
 }

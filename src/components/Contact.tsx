@@ -43,14 +43,25 @@ export default function Contact() {
     <section
       id="contacto"
       className="relative overflow-hidden"
-      style={{ background: "#F8FAFC", paddingTop: "140px", paddingBottom: "140px" }}
+      style={{ paddingTop: "140px", paddingBottom: "140px" }}
     >
-      <div className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(21,101,192,0.12), transparent)" }} />
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 25% 60%, rgba(21,101,192,0.04) 0%, transparent 55%)" }} />
+      {/* Background image */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('/concrete/contact-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      />
+      {/* Dark overlay */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(135deg, rgba(3,8,16,0.85) 0%, rgba(10,22,55,0.80) 100%)" }}
+      />
 
-      <div className="site-container" ref={ref}>
+      <div className="site-container relative z-10" ref={ref}>
 
         {/* Header */}
         <motion.div
@@ -60,7 +71,24 @@ export default function Contact() {
           className="text-center"
           style={{ marginBottom: "72px" }}
         >
-          <span className="section-tag inline-flex" style={{ marginBottom: "20px" }}>Contacto</span>
+          <span
+            className="inline-flex"
+            style={{
+              marginBottom: "20px",
+              padding: "8px 20px",
+              borderRadius: "100px",
+              fontSize: "11px",
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              fontFamily: "var(--font-oswald)",
+              background: "rgba(255,255,255,0.1)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              color: "rgba(255,255,255,0.9)",
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            CONTACTO
+          </span>
           <h2
             className="leading-none"
             style={{
@@ -68,7 +96,7 @@ export default function Contact() {
               fontSize: "clamp(40px, 6vw, 76px)",
               fontWeight: 700,
               letterSpacing: "-0.01em",
-              color: "#0F172A",
+              color: "#FFFFFF",
               marginTop: "12px",
             }}
           >
@@ -77,7 +105,7 @@ export default function Contact() {
           </h2>
           <p
             className="max-w-lg mx-auto text-lg"
-            style={{ color: "#475569", fontFamily: "var(--font-inter)", marginTop: "20px", textAlign: "center" }}
+            style={{ color: "rgba(255,255,255,0.75)", fontFamily: "var(--font-inter)", marginTop: "20px", textAlign: "center" }}
           >
             Cotizaciones gratuitas y sin compromiso. Respondemos en menos de 24 horas.
           </p>
@@ -212,11 +240,11 @@ export default function Contact() {
               <div>
                 <div
                   className="font-bold text-sm"
-                  style={{ fontFamily: "var(--font-oswald)", letterSpacing: "0.03em", color: "#0F172A", marginBottom: "4px" }}
+                  style={{ fontFamily: "var(--font-oswald)", letterSpacing: "0.03em", color: "#FFFFFF", marginBottom: "4px" }}
                 >
                   LICENCIADO & ASEGURADO
                 </div>
-                <div className="text-xs" style={{ color: "#64748B", fontFamily: "var(--font-inter)" }}>
+                <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "var(--font-inter)" }}>
                   Contratista de California · Lic. #1105655
                 </div>
               </div>
