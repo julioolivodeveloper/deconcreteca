@@ -43,22 +43,27 @@ export default function Hero() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
+    const count = window.innerWidth < 768 ? 30 : 50;
     const particles: { x: number; y: number; vx: number; vy: number; r: number; a: number }[] = [];
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 1.5 + 0.3,
-        a: Math.random() * 0.5 + 0.1,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.2 + 0.3,
+        a: Math.random() * 0.4 + 0.1,
       });
     }
 
     let animId: number;
-    const animate = () => {
+    let lastTime = 0;
+    const animate = (time: number) => {
+      animId = requestAnimationFrame(animate);
+      if (time - lastTime < 32) return; // cap at ~30fps
+      lastTime = time;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p) => {
+      for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
@@ -67,24 +72,24 @@ export default function Hero() {
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(66, 165, 245, ${p.a})`;
         ctx.fill();
-      });
-      // Draw connecting lines
-      particles.forEach((a, i) => {
-        particles.slice(i + 1).forEach((b) => {
-          const dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < 120) {
+      }
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
             ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(21, 101, 192, ${0.15 * (1 - dist / 120)})`;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(21,101,192,${0.12 * (1 - dist / 100)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
-        });
-      });
-      animId = requestAnimationFrame(animate);
+        }
+      }
     };
-    animate();
+    requestAnimationFrame(animate);
 
     const onResize = () => {
       canvas.width = window.innerWidth;

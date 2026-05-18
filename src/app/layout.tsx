@@ -34,6 +34,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${oswald.variable} ${inter.variable}`}>
+      <head>
+        <link rel="preload" as="image" href="/concrete/gsggsbaba.jpg" fetchPriority="high" />
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );
