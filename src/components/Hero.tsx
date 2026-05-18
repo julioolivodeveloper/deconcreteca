@@ -111,7 +111,6 @@ export default function Hero() {
         backgroundImage: "url(/concrete/gsggsbaba.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed",
       }}
     >
       {/* Dark overlay */}
