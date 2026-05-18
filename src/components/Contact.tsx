@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Send, Phone, Mail, MapPin, Clock, ShieldCheck } from "lucide-react";
 
@@ -13,6 +13,13 @@ export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [sent, setSent] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
   const [form, setForm] = useState({
     name: "", phone: "", email: "", service: "", zip: "", message: "",
   });
@@ -49,7 +56,7 @@ export default function Contact() {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/concrete/contact-bg.jpg')",
+          backgroundImage: isMobile ? "url('/concrete/contact-bg-mobile.jpg')" : "url('/concrete/contact-bg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

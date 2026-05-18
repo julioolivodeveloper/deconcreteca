@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { MessageSquare, Ruler, Wrench, ClipboardCheck, ArrowRight } from "lucide-react";
 
@@ -42,6 +42,13 @@ const steps = [
 export default function Process() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
     <section
@@ -53,7 +60,7 @@ export default function Process() {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/concrete/process-bg.jpg')",
+          backgroundImage: isMobile ? "url('/concrete/process-bg-mobile.jpg')" : "url('/concrete/process-bg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
