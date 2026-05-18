@@ -56,7 +56,6 @@ export default function Process() {
           backgroundImage: "url('/concrete/process-bg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       />
       {/* Dark overlay */}

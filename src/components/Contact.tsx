@@ -52,7 +52,6 @@ export default function Contact() {
           backgroundImage: "url('/concrete/contact-bg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       />
       {/* Dark overlay */}
